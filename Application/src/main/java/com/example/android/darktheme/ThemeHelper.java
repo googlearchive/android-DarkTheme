@@ -16,9 +16,10 @@
 
 package com.example.android.darktheme;
 
+import android.os.Build.VERSION;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.os.BuildCompat;
 
 public class ThemeHelper {
 
@@ -37,7 +38,7 @@ public class ThemeHelper {
                 break;
             }
             default: {
-                if (BuildCompat.isAtLeastQ()) {
+                if (isAtLeastQ()) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
@@ -45,5 +46,9 @@ public class ThemeHelper {
                 break;
             }
         }
+    }
+
+    private static boolean isAtLeastQ() {
+        return VERSION.SDK_INT >= 29;
     }
 }
